@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment / secrets — NEVER commit this
+.env
+
+# Database (local state)
+*.db
+*.db-shm
+*.db-wal
+
+# macOS
+.DS_Store
+.localized
+
+# Streamlit
+.streamlit/
+
+# Calendar exports
+*.ics
+
+# Editor
+.idea/
+.vscode/
+*.code-workspace
+
+# Jupyter
+.ipynb_checkpoints/
