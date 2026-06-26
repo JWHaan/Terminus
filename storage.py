@@ -7,7 +7,7 @@ from typing import Any
 import pandas as pd
 
 
-DB_PATH = Path("student_planner.db")
+DB_PATH = Path("terminus.db")
 
 
 def connect(db_path: Path | str = DB_PATH) -> sqlite3.Connection:
