@@ -664,7 +664,7 @@ def build_calendar_ics(events: pd.DataFrame, blocks: pd.DataFrame) -> bytes:
     lines = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
-        "PRODID:-//StudyFlow AI Planner//student-planner//EN",
+        "PRODID:-//Terminus//student-planner//EN",
         "CALSCALE:GREGORIAN",
     ]
 
@@ -672,7 +672,7 @@ def build_calendar_ics(events: pd.DataFrame, blocks: pd.DataFrame) -> bytes:
 
     for idx, row in events.iterrows():
         due_date = datetime.strptime(str(row["due_date"]).split("T")[0], "%Y-%m-%d").date()
-        uid = f"deadline-{idx}-{_ics_date(due_date)}@studyflow.local"
+        uid = f"deadline-{idx}-{_ics_date(due_date)}@terminus.local"
 
         lines.extend(
             [
@@ -707,7 +707,7 @@ def build_calendar_ics(events: pd.DataFrame, blocks: pd.DataFrame) -> bytes:
         duration = timedelta(hours=float(row["hours"]))
         end = start + duration
 
-        uid = f"study-{idx}-{_ics_dt(start)}@studyflow.local"
+        uid = f"study-{idx}-{_ics_dt(start)}@terminus.local"
 
         description = (
             f"For: {row['event_title']}\n"
@@ -1061,7 +1061,7 @@ with calendar_tab:
         st.download_button(
             "Download calendar as .ics",
             data=build_calendar_ics(all_events, blocks),
-            file_name="studyflow_calendar.ics",
+            file_name="terminus_calendar.ics",
             mime="text/calendar",
         )
 

@@ -1,4 +1,4 @@
-# StudyFlow AI Planner
+# Terminus
 
 A local web app prototype for students. It lets you upload course handouts, extracts deadlines/exams, creates checklist tasks, and reshuffles the study calendar when your available study time changes.
 
@@ -17,7 +17,7 @@ A local web app prototype for students. It lets you upload course handouts, extr
 ## Folder structure
 
 ```text
-student_planner_ai/
+terminus/
   app.py             # Streamlit UI
   ai.py              # Agnes AI extraction + reschedule explanation
   parser_utils.py    # PDF/DOCX/TXT text extraction and fallback parser
@@ -30,7 +30,7 @@ student_planner_ai/
 ## Setup
 
 ```bash
-cd student_planner_ai
+cd terminus
 python -m venv .venv
 source .venv/bin/activate   # macOS/Linux
 pip install -r requirements.txt
@@ -66,5 +66,5 @@ streamlit run app.py
 
 - For scanned PDFs, normal text extraction may fail. Run OCR first, then upload the OCR text/PDF.
 - The scheduler is deterministic and deadline-first. The OpenAI call is used to extract structured course data and explain rescheduling in a student-friendly way.
-- The SQLite database is created locally as `student_planner.db`.
+- The SQLite database is created locally as `terminus.db`.
 - Do not commit `.env` to GitHub.
