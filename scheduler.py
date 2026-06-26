@@ -19,9 +19,13 @@ class ScheduledBlock:
     due_date: str
 
 
-def parse_date(value: str | date) -> date:
+def parse_date(value: str | date) -> date | None:
     if isinstance(value, date):
         return value
+
+    # Handle empty or None values
+    if not value or str(value).strip() == "":
+        return None
 
     # Strip time/timezone component if model returned a full ISO datetime
     return datetime.strptime(str(value).split("T")[0], "%Y-%m-%d").date()
@@ -124,6 +128,14 @@ def reschedule_tasks(
 
     for _, task in active.iterrows():
         due = parse_date(str(task["due_date"]))
+
+        # Skip tasks with invalid or missing due dates
+        if due is None:
+            warnings.append(
+                f"Skipping task '{task['task_title']}' for '{task['event_title']}' "
+                f"due to missing or invalid due date."
+            )
+            continue
 
         possible_days = [
             d
